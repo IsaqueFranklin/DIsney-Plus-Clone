@@ -1,1 +1,1 @@
-Essa desgraça está com a porra de um problemão ainda.
+A very nice partial functional Disney+ clone with React and Firebase.

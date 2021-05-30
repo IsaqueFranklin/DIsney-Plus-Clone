@@ -1,37 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { selectNewDisney } from "../features/movie/movieSlice";
 
 function NewDisney() {
+    const movies = useSelector(selectNewDisney);
+    console.log(movies, ":🛢️");
+
     return (
         <Container>
-            <h4>Recommended for you.</h4>
-            <Content>
-                <Wrap>
-                    <Link to="/">
-                        <img src='https://images.unsplash.com/photo-1505673542670-a5e3ff5b14a3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3RhcnN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60' alt='' />
-                    </Link>
-                </Wrap>
-
-                <Wrap>
-                    <Link to="/">
-                        <img src='https://images.unsplash.com/photo-1505673542670-a5e3ff5b14a3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3RhcnN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60' alt='' />
-                    </Link>
-                </Wrap>
-
-                <Wrap>
-                    <Link to="/">
-                        <img src='https://images.unsplash.com/photo-1505673542670-a5e3ff5b14a3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3RhcnN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60' alt='' />
-                    </Link>
-                </Wrap>
-
-                <Wrap>
-                    <Link to="/">
-                        <img src='https://images.unsplash.com/photo-1505673542670-a5e3ff5b14a3?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c3RhcnN8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60' alt='' />
-                    </Link>
-                </Wrap>
-            </Content>
-        </Container>
+        <h4>New to Disney+</h4>
+        <Content>
+          {movies &&
+            movies.map((movie, key) => (
+              <Wrap key={key}>
+                {movie.id}
+                <Link to={`/detail/` + movie.id}>
+                  <img src={movie.cardImg} alt={movie.title} />
+                </Link>
+              </Wrap>
+            ))}
+        </Content>
+      </Container>
     )
 }
 
